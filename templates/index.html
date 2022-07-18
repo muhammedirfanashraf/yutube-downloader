@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Yutube downloader</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6Zg1415F3Gq6GCWLgHHWYBVnpgfqmZhPi4A&usqp=CAU">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <div class="container-fluid">
+      <nav class="row navbar fixed-top">
+        <div class="container-fluid">
+          <a class=" text-white navbar-brand" href="#">
+            Youtube Downloader
+          </a>
+        </div>
+      </nav>
+
+
+
+      <div class="mt-5 pt-5 w-100 mt-5">
+        <form class="w-100 d-flex justify-content-center align-items-center" action="" method="POST">
+          {% csrf_token %}
+          <input class="w-75 input mr-2" name="link" type="text">
+          <button type="submit">submit</button>
+        </form>
+      </div>
+
+        <div style="border-radius: 20px;" class="w-25 mx-auto mt-5 p-2 hidden d-none bg-success text-white">
+          <h5 class="m-0 p-0 text-center">Downloading</h5>
+        </div>
+  
+      <div class="pb-5 row mt-5 d-flex justify-content-center align-items-center">
+        <div class="mt-5 col-md-12 col-lg-6 col-xlg-6 col-sm-12 col-12 d-flex justify-content-center align-items-center">
+        {% if thumbnail %}
+          <img class="image w-75" src="{{thumbnail}}" alt="">
+        {% endif %}
+        </div>
+      <div class="pb-5 d-flex justify-content-center align-items-center mt-5 col-md-12 col-lg-6 col-xlg-6 col-sm-12 col-12 flex-column">
+        {% if title %}
+        <span class="text-center mb-5">{{title}}</span>
+        {% endif %}
+        <div class="buttons">
+          {% if videos %}
+          {% for video in videos %}
+          <a href="{% url 'download' video.resolution %}"><button class="mr-3">{{video.resolution}}</button></a>
+            <!-- <a href="{% url 'download' video.resolution %}"><button class="mr-3" >{{video.resolution}}</button></a> -->
+          {% endfor %}
+        {% endif %}
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+
+    <script>
+      btn = document.getElementById('btn')
+      button = document.querySelector('.buttons')
+      hidden = document.querySelector('.hidden')
+      button.addEventListener("click", function(e){
+        // e.preventDefault()
+        hidden.classList.remove('d-none')
+      })
+
+    </script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

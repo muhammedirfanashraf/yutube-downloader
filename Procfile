@@ -1,0 +1,1 @@
+web: gunicorn yutube.wsgi --log-file -

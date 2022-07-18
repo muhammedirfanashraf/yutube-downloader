@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-nt_m^l&+0qoa^y@n2zpg7@-3$qk#p2=ys$59tsnys-$y4jqj(p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'yutube-downloader-python.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'yutube-downloader-python.herokuapp.com']
 
 
 # Application definition

@@ -1,12 +1,12 @@
-from tkinter import filedialog
-# import easygui
+# from tkinter import filedialog
+import easygui
 from django.shortcuts import redirect, render
 from pytube import YouTube
 
 # Create your views here.
 
 def path():
-    path = filedialog.askdirectory()
+    path = easygui.filesavebox()
     return path
 
 
